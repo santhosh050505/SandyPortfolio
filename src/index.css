@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 210 25% 8%; /* #0F1419 */
+    --foreground: 45 11% 95%; /* #F5F4F1 */
+
+    --card: 219 16% 12%; /* #1A1D24 */
+    --card-foreground: 45 11% 95%;
+
+    --popover: 219 16% 12%;
+    --popover-foreground: 45 11% 95%;
+
+    --primary: 171 77% 51%; /* Teal/Cyan #2DD4BF */
+    --primary-foreground: 210 25% 8%;
+
+    --secondary: 219 16% 18%; 
+    --secondary-foreground: 45 11% 95%;
+
+    --muted: 219 16% 18%;
+    --muted-foreground: 215 15% 75%;
+
+    --accent: 171 77% 51%;
+    --accent-foreground: 210 25% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 11% 95%;
+
+    --border: 219 16% 20%;
+    --input: 219 16% 20%;
+    --ring: 171 77% 51%;
+
+    --radius: 0.75rem;
+    
+    --gradient-primary: linear-gradient(135deg, #2DD4BF 0%, #0891B2 100%);
+    --gradient-card: linear-gradient(135deg, rgba(26, 29, 36, 1) 0%, rgba(32, 36, 45, 0.9) 100%);
+    --shadow-glow: 0 0 40px rgba(45, 212, 191, 0.2);
+    --shadow-elegant: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+  
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl;
+  }
+}
