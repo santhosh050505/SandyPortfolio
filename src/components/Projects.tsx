@@ -20,16 +20,26 @@ const projectsData = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 relative">
-      <div className="container mx-auto px-4">
-        {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
+    <section id="projects" className="py-24 relative overflow-hidden bg-background">
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Image & Title */}
+        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-up px-2">
+          <div className="relative flex justify-center mb-8">
+            <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center border-2 border-primary/20 overflow-hidden shadow-lg shadow-primary/20">
+               <img 
+                  src="/projects.png" 
+                  alt="Featured Projects" 
+                  className="w-20 h-20 object-contain hover:rotate-12 transition-transform duration-500"
+                />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
+            Featured <span className="text-primary">Projects</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Showcasing my technical skills through real-world applications
+          <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
+          <p className="text-foreground/50 mt-6 max-w-2xl mx-auto font-medium uppercase tracking-widest text-xs">
+            Showcasing technical excellence through real-world applications
           </p>
         </div>
 
@@ -38,45 +48,45 @@ const Projects = () => {
           {projectsData.map((project, index) => (
             <div
               key={index}
-              className="glass-card p-8 hover-lift group relative overflow-hidden"
+              className="bg-card p-6 md:p-10 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:border-primary/50 transition-all duration-500"
             >
               {/* Decorative Element */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
               
               <div className="relative z-10">
                 {/* Icon */}
-                <div className="mb-6">
-                  <div className="inline-flex p-3 bg-primary/10 rounded-lg glow-effect">
+                <div className="mb-8">
+                  <div className="inline-flex p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-colors">
                     <Code2 className="h-8 w-8 text-primary" />
                   </div>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-2xl md:text-3xl font-black mb-4 text-white uppercase tracking-tighter group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-foreground/70 mb-8 leading-relaxed font-light">
                   {project.description}
                 </p>
 
                 {/* Highlights */}
-                <div className="mb-6 space-y-2">
+                <div className="mb-8 space-y-3">
                   {project.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                      <span className="text-sm text-foreground/80">{highlight}</span>
+                    <div key={idx} className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
+                      <span className="text-xs text-foreground/80 font-bold uppercase tracking-widest">{highlight}</span>
                     </div>
                   ))}
                 </div>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-10">
                   {project.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full"
+                      className="px-4 py-1.5 text-[10px] font-black uppercase tracking-widest bg-primary/10 text-primary rounded-full border border-primary/20"
                     >
                       {tech}
                     </span>
@@ -84,16 +94,16 @@ const Projects = () => {
                 </div>
 
                 {/* Links */}
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   <Button
                     variant="outline"
-                    size="sm"
-                    className="border-primary/50 hover:bg-primary/10"
+                    size="lg"
+                    className="border-primary/50 text-white hover:bg-primary/10 font-bold px-8 rounded-xl h-14 transition-all duration-300 w-full md:w-auto"
                     asChild
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      View Code
+                      <Github className="mr-3 h-5 w-5" />
+                      Repository
                     </a>
                   </Button>
                 </div>

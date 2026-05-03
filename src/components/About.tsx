@@ -8,31 +8,28 @@ const About = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider">
+        <div className="text-center mb-16 animate-fade-up px-2">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
             About <span className="text-primary">Me</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Image Column */}
-          <div className="lg:col-span-5 animate-fade-right">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl group-hover:bg-primary/30 transition-all duration-500" />
-              <div className="relative bg-card p-3 rounded-3xl shadow-2xl border border-white/5 overflow-hidden group-hover:border-primary/50 transition-colors duration-500">
-                <img 
-                  src={aboutImage} 
-                  alt="Santhosh K" 
-                  className="w-full h-auto rounded-2xl object-cover aspect-[4/5] filter grayscale hover:grayscale-0 transition-all duration-700 hover:scale-[1.03]"
-                />
-              </div>
+          <div className="lg:col-span-5 animate-fade-right w-full max-w-[400px] mx-auto lg:max-w-none">
+            <div className="relative rounded-2xl shadow-xl overflow-hidden transform lg:-rotate-2 hover:rotate-0 transition-all duration-500 border-4 border-white/10 hover:border-primary/50">
+              <img 
+                src={aboutImage} 
+                alt="Santhosh K" 
+                className="w-full h-auto object-cover aspect-[4/5] transition-all duration-700 hover:scale-[1.05]"
+              />
             </div>
           </div>
 
           {/* Content Column */}
           <div className="lg:col-span-7 animate-fade-left">
-            <div className="bg-card rounded-3xl p-8 md:p-12 shadow-2xl border border-white/5 relative overflow-hidden">
+            <div className="bg-card rounded-3xl p-6 md:p-12 shadow-2xl border border-white/5 relative overflow-hidden">
               <div className="space-y-8 text-lg leading-relaxed relative z-10">
                 <p className="text-foreground/90 font-light">
                   I am a driven <span className="text-primary font-bold">Software Engineering student</span> at 
@@ -51,7 +48,7 @@ const About = () => {
                 </p>
 
                 {/* Quick Stats Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 pt-10 border-t border-white/5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 pt-10 border-t border-white/5">
                   <div className="text-center group">
                     <div className="text-4xl font-black text-white mb-2 group-hover:text-primary transition-colors">7.6</div>
                     <div className="text-xs text-primary uppercase font-black tracking-widest">CGPA</div>

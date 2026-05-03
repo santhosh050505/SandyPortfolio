@@ -21,53 +21,69 @@ const Experience = () => {
     <section id="experience" className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider">
+        
+        <div className="text-center mb-16 animate-fade-up px-2">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
             Professional <span className="text-primary">Experience</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
         </div>
 
         {/* Experience Content */}
-        <div className="max-w-4xl mx-auto">
-          {experienceData.map((exp, index) => (
-            <div key={index} className="bg-card p-8 md:p-12 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:border-primary/50 transition-all duration-500">
-              {/* Decorative Element */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:bg-primary/10 transition-colors" />
-              
-              <div className="relative z-10">
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
-                  <div className="flex items-center gap-6">
-                    <div className="p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-colors">
-                      <Briefcase className="h-8 w-8 text-primary" />
+        <div className="grid lg:grid-cols-12 gap-12 max-w-7xl mx-auto items-center">
+          {/* Image Column */}
+          <div className="lg:col-span-5 hidden lg:flex justify-center animate-fade-right">
+            <div className="relative w-[80%]">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-full blur-3xl" />
+              <img 
+                src="/experience.png" 
+                alt="Professional Experience" 
+                className="relative w-full h-auto object-contain drop-shadow-2xl hover:-translate-y-4 transition-transform duration-500"
+              />
+            </div>
+          </div>
+
+          {/* Text Column */}
+          <div className="lg:col-span-7 space-y-8">
+            {experienceData.map((exp, index) => (
+              <div key={index} className="bg-card p-6 md:p-10 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:border-primary/50 transition-all duration-500">
+                {/* Decorative Element */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:bg-primary/10 transition-colors" />
+                
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                    <div className="flex items-center gap-6">
+                      <div className="p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-colors">
+                        <Briefcase className="h-8 w-8 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl md:text-2xl font-black text-white leading-tight">{exp.role}</h3>
+                        <p className="text-primary font-bold uppercase tracking-[0.2em] text-xs mt-1">{exp.company}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-3xl font-black text-white leading-tight">{exp.role}</h3>
-                      <p className="text-primary font-bold uppercase tracking-[0.2em] text-sm mt-1">{exp.company}</p>
+                    
+                    <div className="flex items-center gap-2 md:gap-3 text-foreground/50 bg-white/5 px-3 md:px-4 py-2 rounded-full border border-white/5 font-bold text-[10px] uppercase tracking-widest flex-wrap">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      <span>{exp.period}</span>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center gap-3 text-foreground/50 bg-white/5 px-6 py-2.5 rounded-full border border-white/5 font-bold text-xs uppercase tracking-widest">
-                    <Calendar className="h-4 w-4 text-primary" />
-                    <span>{exp.period} • {exp.duration}</span>
+
+                  <p className="text-lg text-foreground/80 font-light mb-8 leading-relaxed border-l-2 border-primary/20 pl-6">
+                    {exp.description}
+                  </p>
+
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {exp.achievements.map((achievement, idx) => (
+                      <div key={idx} className="flex items-start gap-4 p-4 bg-white/5 rounded-2xl border border-white/5 group/achievement hover:bg-primary/5 transition-all duration-300">
+                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5 group-hover/achievement:scale-110 transition-transform" />
+                        <p className="text-xs text-foreground/70 leading-relaxed font-medium">{achievement}</p>
+                      </div>
+                    ))}
                   </div>
-                </div>
-
-                <p className="text-xl text-foreground font-light mb-10 leading-relaxed border-l-2 border-primary/20 pl-6">
-                  {exp.description}
-                </p>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  {exp.achievements.map((achievement, idx) => (
-                    <div key={idx} className="flex items-start gap-4 p-5 bg-white/5 rounded-2xl border border-white/5 group/achievement hover:bg-primary/5 transition-all duration-300">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5 group-hover/achievement:scale-110 transition-transform" />
-                      <p className="text-sm text-foreground/70 leading-relaxed font-medium">{achievement}</p>
-                    </div>
-                  ))}
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

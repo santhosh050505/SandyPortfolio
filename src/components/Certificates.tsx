@@ -28,76 +28,79 @@ const Certificates = () => {
     <section id="certificates" className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider">
+        <div className="text-center mb-16 px-2">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
             Certs & <span className="text-primary">Achievements</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
         </div>
 
-        {/* Certificates Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {certificatesData.map((cert, index) => (
-            <div
-              key={index}
-              className="bg-card p-8 rounded-3xl shadow-2xl border border-white/5 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden"
-            >
-              {/* Decorative Background */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -translate-y-12 translate-x-12 group-hover:scale-150 transition-transform duration-500" />
-              
-              <div className="relative z-10">
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="inline-flex p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-colors">
-                    <Award className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
+        <div className="grid lg:grid-cols-3 gap-8 items-start max-w-7xl mx-auto mb-20">
+          {/* Illustration Card */}
+          <div className="lg:col-span-1 space-y-8">
+            <div className="relative w-full flex justify-center">
+              <img 
+                src="/certs.png" 
+                alt="Achievements Illustration" 
+                className="w-48 h-48 object-contain drop-shadow-[0_0_15px_rgba(45,212,191,0.3)] animate-[pulse_3s_ease-in-out_infinite]"
+              />
+            </div>
+            
+            <div className="bg-card p-6 rounded-2xl border border-white/5">
+              <h3 className="text-xs font-black text-white uppercase tracking-widest mb-4">Core Philosophy</h3>
+              <p className="text-xs text-foreground/50 leading-relaxed font-medium">
+                Constant growth through specialized certification and structured learning pathways in emerging technologies.
+              </p>
+            </div>
+          </div>
 
-                {/* Badge (if applicable) */}
-                {cert.badge && (
-                  <div className="mb-4">
-                    <span className="inline-flex px-4 py-1 text-[10px] font-black uppercase tracking-widest bg-primary/20 text-primary rounded-full border border-primary/20">
+          {/* Certificates List */}
+          <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
+            {certificatesData.map((cert, index) => (
+              <div
+                key={index}
+                className="bg-card p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all duration-300 group"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                    <Award className="h-5 w-5 text-primary" />
+                  </div>
+                  {cert.badge && (
+                    <span className="px-2 py-0.5 text-[8px] font-black uppercase tracking-widest bg-primary/20 text-primary rounded-full border border-primary/20">
                       {cert.badge}
                     </span>
-                  </div>
-                )}
+                  )}
+                </div>
 
-                {/* Title */}
-                <h3 className="text-2xl font-black mb-3 text-white leading-tight group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-black mb-1 text-white uppercase tracking-tight group-hover:text-primary transition-colors">
                   {cert.title}
                 </h3>
-
-                {/* Issuer */}
-                <p className="text-primary font-bold uppercase tracking-widest text-xs mb-4">{cert.issuer}</p>
-
-                {/* Date */}
-                <p className="text-xs text-foreground/40 font-bold uppercase tracking-widest mb-6">{cert.date}</p>
-
-                {/* Description */}
-                <p className="text-sm text-foreground/70 leading-relaxed font-medium">
+                <p className="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">{cert.issuer}</p>
+                <p className="text-[9px] text-foreground/40 font-bold uppercase tracking-widest mb-4">{cert.date}</p>
+                <p className="text-xs text-foreground/60 leading-relaxed font-medium line-clamp-2">
                   {cert.description}
                 </p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
-        {/* Personal Strengths */}
-        <div className="mt-20 text-center">
-          <div className="bg-card p-10 max-w-4xl mx-auto rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-30" />
+        {/* Personal Artifacts */}
+        <div className="mt-20">
+          <div className="bg-card p-6 md:p-8 rounded-3xl border border-white/5 relative overflow-hidden max-w-5xl mx-auto shadow-2xl">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
             
-            <h3 className="text-2xl font-black mb-10 text-white uppercase tracking-widest">Personal Artifacts</h3>
+            <h3 className="text-sm font-black mb-8 text-white uppercase tracking-widest text-center">Personal Artifacts</h3>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-8 bg-white/5 rounded-2xl border border-white/5 group-hover:bg-primary/5 transition-colors text-left">
-                <p className="text-xs font-black text-primary uppercase tracking-widest mb-2">Adaptability</p>
-                <p className="text-xl font-bold text-white mb-2">Highly Versatile</p>
-                <p className="text-sm text-foreground/50 leading-relaxed font-medium">Engineered to quickly integrate new technologies and methodologies into functional workflows.</p>
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/5 hover:bg-primary/5 transition-colors">
+                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Adaptability</p>
+                <h4 className="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Highly Versatile</h4>
+                <p className="text-xs text-foreground/50 leading-relaxed">Engineered to quickly integrate new technologies and methodologies into functional workflows with precision.</p>
               </div>
-              <div className="p-8 bg-white/5 rounded-2xl border border-white/5 group-hover:bg-primary/5 transition-colors text-left">
-                <p className="text-xs font-black text-primary uppercase tracking-widest mb-2">efficiency</p>
-                <p className="text-xl font-bold text-white mb-2">Strategic Execution</p>
-                <p className="text-sm text-foreground/50 leading-relaxed font-medium">Optimized for high-output performance through rigorous time management and organizational strategies.</p>
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/5 hover:bg-primary/5 transition-colors">
+                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Efficiency</p>
+                <h4 className="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Strategic Execution</h4>
+                <p className="text-xs text-foreground/50 leading-relaxed">Optimized for high-output performance through rigorous time management and advanced organizational systems.</p>
               </div>
             </div>
           </div>
@@ -108,3 +111,4 @@ const Certificates = () => {
 };
 
 export default Certificates;
+

@@ -30,8 +30,8 @@ const Contact = () => {
     <section id="contact" className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Title */}
-        <div className="text-center mb-20 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider">
+        <div className="text-center mb-20 animate-fade-up px-2">
+          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
             Get In <span className="text-primary">Touch</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
@@ -43,9 +43,19 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="space-y-8 animate-fade-right">
-            <div className="bg-card p-10 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group">
+            {/* Image Card */}
+            <div className="relative flex justify-center py-6">
+              <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent blur-3xl rounded-full" />
+              <img 
+                src="/contact.png" 
+                alt="Contact Me" 
+                className="w-[60%] max-w-[250px] object-contain drop-shadow-2xl hover:-translate-y-2 transition-transform duration-500 relative z-10"
+              />
+            </div>
+
+            <div className="bg-card p-6 md:p-10 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-1 h-full bg-primary/20 group-hover:bg-primary transition-colors" />
-              <h3 className="text-2xl font-black mb-10 text-white uppercase tracking-widest">Information</h3>
+              <h3 className="text-2xl font-black mb-10 text-white uppercase tracking-widest">Connect with me</h3>
               
               <div className="space-y-8">
                 <div className="flex items-center gap-6 group/item">
@@ -54,7 +64,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">Email</p>
-                    <a href="mailto:santhosh19510@gmail.com" className="text-xl font-bold text-white hover:text-primary transition-colors">
+                    <a href="mailto:santhosh19510@gmail.com" className="text-lg sm:text-xl font-bold text-white hover:text-primary transition-colors break-all">
                       santhosh19510@gmail.com
                     </a>
                   </div>
@@ -66,7 +76,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-xs font-black text-primary uppercase tracking-widest mb-1">Phone</p>
-                    <a href="tel:+919940780852" className="text-xl font-bold text-white hover:text-primary transition-colors">
+                    <a href="tel:+919940780852" className="text-lg sm:text-xl font-bold text-white hover:text-primary transition-colors">
                       +91 99407 80852
                     </a>
                   </div>
@@ -100,9 +110,9 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-card p-10 rounded-3xl shadow-2xl border border-white/5 animate-fade-left">
+          <div className="bg-card p-6 md:p-10 rounded-3xl shadow-2xl border border-white/5 animate-fade-left">
             <form onSubmit={handleSubmit} className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-xs font-black text-primary uppercase tracking-widest ml-1">Name</label>
                   <Input

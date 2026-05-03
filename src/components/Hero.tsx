@@ -27,13 +27,13 @@ const Hero = () => {
             <img
               src={profilePhoto}
               alt="Santhosh K"
-              className="relative w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-primary/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
+              className="relative w-48 h-48 md:w-64 md:h-64 rounded-full object-cover border-4 border-primary/50 shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]"
             />
           </div>
 
           {/* Name & Title */}
-          <div className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white">
+          <div className="space-y-6 px-2">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white break-words">
               Santhosh <span className="text-primary tracking-normal">K</span>
             </h1>
             <p className="text-xl md:text-3xl text-foreground font-medium tracking-tight">
