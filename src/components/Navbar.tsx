@@ -131,15 +131,18 @@ const Navbar = () => {
           {/* Desktop Right Actions */}
           <div className="hidden lg:flex items-center gap-2.5">
             <ThemeToggle />
-            <motion.button
+            <motion.a
+              href="/resume.pdf"
+              download="Santhosh_K_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              onClick={handleResumeClick}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)] text-white text-xs font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-shadow duration-300"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)] text-white text-xs font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-shadow duration-300 cursor-pointer"
             >
               <FileText className="h-3.5 w-3.5" />
               Resume
-            </motion.button>
+            </motion.a>
           </div>
 
           {/* Mobile Controls */}
@@ -222,14 +225,18 @@ const Navbar = () => {
                 }}
                 className="pt-8"
               >
-                <button
-                  onClick={() => { setIsMobileMenuOpen(false); handleResumeClick(); }}
-                  className="flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)] text-white text-sm font-semibold shadow-xl shadow-primary/25"
+                <a
+                  href="/resume.pdf"
+                  download="Santhosh_K_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)] text-white text-sm font-semibold shadow-xl shadow-primary/25 cursor-pointer"
                 >
                   <FileText className="h-4 w-4" />
                   Download Resume
                   <ArrowUpRight className="h-4 w-4" />
-                </button>
+                </a>
               </motion.div>
             </motion.div>
           </motion.div>

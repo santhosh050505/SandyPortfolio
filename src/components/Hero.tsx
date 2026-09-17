@@ -131,15 +131,18 @@ const Hero = () => {
                 <ArrowUpRight className="h-4 w-4" />
               </motion.button>
 
-              <motion.button
+              <motion.a
+                href="/resume.pdf"
+                download="Santhosh_K_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={handleDownloadResume}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-card border border-border text-foreground text-sm font-semibold hover:border-primary/40 hover:shadow-lg transition-all duration-300 w-full sm:w-auto justify-center"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-card border border-border text-foreground text-sm font-semibold hover:border-primary/40 hover:shadow-lg transition-all duration-300 w-full sm:w-auto justify-center cursor-pointer"
               >
                 <Download className="h-4 w-4 text-muted-foreground" />
                 Download Resume
-              </motion.button>
+              </motion.a>
             </motion.div>
 
             {/* Location metadata */}
