@@ -3,9 +3,9 @@ import { Briefcase, Calendar, CheckCircle2 } from "lucide-react";
 const experienceData = [
   {
     role: "Software Engineering Intern",
-    company: "TechFlow Solutions",
+    company: "Vectarc Private Limited",
     period: "Jan 5 2026 - June 5 2026",
-    duration: "5 Months",
+    duration: "6 Months",
     description: "Contributed to the development of scalable web applications using React and Node.js. Focused on performance optimization and creating intuitive user interfaces.",
     achievements: [
       "Optimized database queries, leading to a 25% faster data retrieval rate.",
