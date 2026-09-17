@@ -13,7 +13,6 @@ const Hero = () => {
   });
 
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const opacityFade = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   const handleDownloadResume = () => {
@@ -71,7 +70,7 @@ const Hero = () => {
       </div>
 
       <motion.div
-        style={{ y: yParallax, opacity: opacityFade, scale }}
+        style={{ y: yParallax, scale }}
         className="max-w-6xl mx-auto px-4 sm:px-6 w-full relative z-10"
       >
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
@@ -184,26 +183,6 @@ const Hero = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.5 }}
                 />
-
-                {/* Info badge overlay */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1 }}
-                  className="absolute bottom-5 left-5 right-5 glass rounded-xl p-3 border border-white/10 flex justify-between items-center"
-                >
-                  <div>
-                    <span className="text-xs font-bold text-foreground block">
-                      Santhosh K
-                    </span>
-                    <span className="text-[10px] text-muted-foreground font-medium">
-                      B.Tech IT · 2022—2026
-                    </span>
-                  </div>
-                  <div className="text-[10px] font-mono font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
-                    7.6 CGPA
-                  </div>
-                </motion.div>
               </div>
 
               {/* Floating orbiting elements */}
