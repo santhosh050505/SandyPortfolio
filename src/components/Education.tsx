@@ -1,104 +1,106 @@
-import { GraduationCap, Award } from "lucide-react";
+import { motion } from "framer-motion";
+import { GraduationCap, Trophy, TrendingUp } from "lucide-react";
 
 const educationData = [
   {
-    degree: "Bachelor of Technology",
-    field: "Information Technology",
+    degree: "B.Tech — Information Technology",
     institution: "M.Kumarasamy College of Engineering",
-    score: "7.6 CGPA",
-    period: "2022 - 2026",
-    status: "In Progress",
+    score: "CGPA: 7.6 / 10",
+    period: "2022 — 2026",
+    details: "Focus on software engineering, database management, web architecture, and algorithms.",
+    icon: GraduationCap,
+    gradient: "from-violet-500 to-purple-600",
+    featured: true,
   },
   {
     degree: "Higher Secondary Certificate (HSC)",
     institution: "Akshaya Academy Matric Hr.Sec.School, Kosavapatty",
     score: "88.8%",
-    period: "2021 - 2022",
-    status: "Completed",
+    period: "2021 — 2022",
+    details: "Mathematics, Physics, Chemistry, and Computer Science background.",
+    icon: Trophy,
+    gradient: "from-blue-500 to-cyan-500",
+    featured: false,
   },
   {
     degree: "Secondary School Leaving Certificate (SSLC)",
     institution: "Akshaya Academy Matric Hr.Sec.School, Kosavapatty",
     score: "96.4%",
-    period: "2019 - 2020",
-    status: "Completed",
+    period: "2019 — 2020",
+    details: "Excellence in Mathematics and General Science.",
+    icon: TrendingUp,
+    gradient: "from-emerald-500 to-teal-500",
+    featured: false,
   },
 ];
 
 const Education = () => {
   return (
-    <section id="education" className="py-24 relative overflow-hidden bg-background">
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Image & Title */}
-        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-up px-2">
-          <div className="relative w-48 h-48 mx-auto mb-8">
-            <img 
-              src="/education.png" 
-              alt="Educational Journey" 
-              className="w-full h-full object-contain drop-shadow-[0_10px_20px_rgba(45,212,191,0.2)] animate-[pulse_4s_ease-in-out_infinite]"
-            />
-          </div>
-          
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
-            Educational <span className="text-primary">Journey</span>
+    <section id="education" className="relative py-24 md:py-32 overflow-hidden section-education transition-colors duration-500">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.2em] block mb-3">
+            07 / Education
+          </span>
+          <h2 className="text-fluid-3xl font-bold tracking-tight text-foreground mb-4">
+            Academic{" "}
+            <span className="gradient-text">Background</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
-        </div>
+          <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)]" />
+        </motion.div>
 
-        {/* Timeline */}
-        <div className="max-w-4xl mx-auto relative">
-          {/* Vertical Line */}
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-white/10 transform md:-translate-x-1/2" />
-
-          {/* Education Cards */}
-          <div className="space-y-12">
-            {educationData.map((edu, index) => (
-              <div
-                key={index}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                } flex-col md:gap-8`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-6 md:left-1/2 w-4 h-4 bg-primary rounded-full transform -translate-x-1/2 ring-4 ring-background shadow-[0_0_20px_rgba(45,212,191,0.5)] z-10" />
-
-                {/* Card */}
-                <div className={`w-[calc(100%-3.5rem)] md:w-[calc(50%-2rem)] ml-14 md:ml-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                  <div className="bg-card p-6 md:p-8 rounded-2xl shadow-2xl border border-white/5 hover:border-primary/50 transition-all duration-300 group">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className={`p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors ${index % 2 === 0 ? 'md:ml-auto' : ''}`}>
-                        {edu.degree.includes("Bachelor") ? (
-                          <GraduationCap className="h-6 w-6 text-primary" />
-                        ) : (
-                          <Award className="h-6 w-6 text-primary" />
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className={`space-y-3 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} text-left`}>
-                      <h3 className="text-xl md:text-2xl font-black text-white leading-tight">
-                        {edu.degree}
-                      </h3>
-                      {edu.field && (
-                        <p className="text-primary font-bold uppercase tracking-widest text-sm">{edu.field}</p>
-                      )}
-                      <p className="text-foreground/70 text-sm font-medium">
-                        {edu.institution}
-                      </p>
-                      <div className={`flex items-center gap-4 pt-4 flex-wrap ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
-                        <span className="inline-flex items-center px-4 py-1 rounded-full text-xs font-black bg-primary/10 text-primary border border-primary/20">
-                          {edu.score}
-                        </span>
-                        <span className="text-foreground/50 text-xs font-bold uppercase tracking-widest">
-                          {edu.period}
-                        </span>
-                      </div>
-                    </div>
+        {/* Education Timeline */}
+        <div className="space-y-4">
+          {educationData.map((edu, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -2 }}
+              className={`glow-card p-5 sm:p-6 group ${edu.featured ? 'ring-1 ring-primary/20' : ''}`}
+            >
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className={`p-2.5 rounded-xl bg-gradient-to-br ${edu.gradient} text-white shadow-lg shrink-0 mt-0.5`}>
+                    <edu.icon className="h-4 w-4" />
+                  </div>
+                  <div className="space-y-1.5 min-w-0">
+                    <h3 className="text-base sm:text-lg font-bold text-foreground leading-snug">
+                      {edu.degree}
+                    </h3>
+                    <p className="text-xs text-muted-foreground font-medium">
+                      {edu.institution}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+                      {edu.details}
+                    </p>
                   </div>
                 </div>
+
+                <div className="flex sm:flex-col items-center sm:items-end gap-2 sm:gap-1.5 shrink-0 pl-12 sm:pl-0">
+                  <span className="text-sm font-bold gradient-text">
+                    {edu.score}
+                  </span>
+                  <span className="text-[11px] font-mono text-muted-foreground bg-muted/60 px-2.5 py-1 rounded-lg">
+                    {edu.period}
+                  </span>
+                </div>
               </div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

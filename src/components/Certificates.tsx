@@ -1,109 +1,103 @@
+import { motion } from "framer-motion";
 import { Award, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const certificatesData = [
   {
     title: "Programming in Java",
-    issuer: "NPTEL",
-    date: "January - April 2024",
-    description: "Comprehensive Java programming certification covering OOP concepts, data structures, and advanced Java features",
+    issuer: "NPTEL (IIT Kharagpur)",
+    date: "January — April 2024",
+    badge: "Accredited NPTEL",
+    description: "Covering Object-Oriented Programming, Data Structures, Exception Handling, and Multithreading.",
+    gradient: "from-violet-500 to-purple-600",
   },
   {
     title: "Azure Fundamentals",
     issuer: "Microsoft Azure",
     date: "February 2025",
-    description: "Global certification in Microsoft Azure cloud services and fundamentals",
     badge: "Global Certification",
+    description: "Cloud architecture concepts, Azure core services, security, governance, and cloud management tools.",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
-    title: "HTML & CSS",
+    title: "HTML & CSS Web Development",
     issuer: "Great Learning",
     date: "2024",
-    description: "Web development fundamentals certification focusing on HTML5 and CSS3",
+    badge: "Web Certification",
+    description: "Responsive layout design, HTML5 semantic elements, and modern CSS flexbox and grid architecture.",
+    gradient: "from-emerald-500 to-teal-500",
   },
 ];
 
 const Certificates = () => {
   return (
-    <section id="certificates" className="py-24 relative overflow-hidden bg-background">
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Title */}
-        <div className="text-center mb-16 px-2">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
-            Certs & <span className="text-primary">Achievements</span>
+    <section id="certificates" className="relative py-24 md:py-32 overflow-hidden section-certificates transition-colors duration-500">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.2em] block mb-3">
+            06 / Certifications
+          </span>
+          <h2 className="text-fluid-3xl font-bold tracking-tight text-foreground mb-4">
+            Verified Technical{" "}
+            <span className="gradient-text">Credentials</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
-        </div>
+          <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)]" />
+        </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-start max-w-7xl mx-auto mb-20">
-          {/* Illustration Card */}
-          <div className="lg:col-span-1 space-y-8">
-            <div className="relative w-full flex justify-center">
-              <img 
-                src="/certs.png" 
-                alt="Achievements Illustration" 
-                className="w-48 h-48 object-contain drop-shadow-[0_0_15px_rgba(45,212,191,0.3)] animate-[pulse_3s_ease-in-out_infinite]"
-              />
-            </div>
-            
-            <div className="bg-card p-6 rounded-2xl border border-white/5">
-              <h3 className="text-xs font-black text-white uppercase tracking-widest mb-4">Core Philosophy</h3>
-              <p className="text-xs text-foreground/50 leading-relaxed font-medium">
-                Constant growth through specialized certification and structured learning pathways in emerging technologies.
-              </p>
-            </div>
-          </div>
-
-          {/* Certificates List */}
-          <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
-            {certificatesData.map((cert, index) => (
-              <div
-                key={index}
-                className="bg-card p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all duration-300 group"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Award className="h-5 w-5 text-primary" />
+        {/* Certificates Grid */}
+        <div className="grid md:grid-cols-3 gap-4">
+          {certificatesData.map((cert, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -4 }}
+              className="glow-card p-6 flex flex-col justify-between group"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className={`p-2.5 rounded-xl bg-gradient-to-br ${cert.gradient} text-white shadow-lg`}>
+                    <Award className="h-4 w-4" />
                   </div>
-                  {cert.badge && (
-                    <span className="px-2 py-0.5 text-[8px] font-black uppercase tracking-widest bg-primary/20 text-primary rounded-full border border-primary/20">
-                      {cert.badge}
-                    </span>
-                  )}
+                  <span className="text-[10px] font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-lg font-bold uppercase">
+                    {cert.badge}
+                  </span>
                 </div>
 
-                <h3 className="text-lg font-black mb-1 text-white uppercase tracking-tight group-hover:text-primary transition-colors">
-                  {cert.title}
-                </h3>
-                <p className="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">{cert.issuer}</p>
-                <p className="text-[9px] text-foreground/40 font-bold uppercase tracking-widest mb-4">{cert.date}</p>
-                <p className="text-xs text-foreground/60 leading-relaxed font-medium line-clamp-2">
+                <div className="space-y-1.5">
+                  <h3 className="text-base font-bold text-foreground leading-snug">
+                    {cert.title}
+                  </h3>
+                  <p className="text-xs font-semibold gradient-text inline-block">
+                    {cert.issuer}
+                  </p>
+                </div>
+
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   {cert.description}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Personal Artifacts */}
-        <div className="mt-20">
-          <div className="bg-card p-6 md:p-8 rounded-3xl border border-white/5 relative overflow-hidden max-w-5xl mx-auto shadow-2xl">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-            
-            <h3 className="text-sm font-black mb-8 text-white uppercase tracking-widest text-center">Personal Artifacts</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/5 hover:bg-primary/5 transition-colors">
-                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Adaptability</p>
-                <h4 className="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Highly Versatile</h4>
-                <p className="text-xs text-foreground/50 leading-relaxed">Engineered to quickly integrate new technologies and methodologies into functional workflows with precision.</p>
+              <div className="pt-4 mt-4 border-t border-border/40 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-muted-foreground">
+                  {cert.date}
+                </span>
+                <ExternalLink className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/5 hover:bg-primary/5 transition-colors">
-                <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-1">Efficiency</p>
-                <h4 className="text-lg font-bold text-white mb-2 uppercase tracking-tighter">Strategic Execution</h4>
-                <p className="text-xs text-foreground/50 leading-relaxed">Optimized for high-output performance through rigorous time management and advanced organizational systems.</p>
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -111,4 +105,3 @@ const Certificates = () => {
 };
 
 export default Certificates;
-

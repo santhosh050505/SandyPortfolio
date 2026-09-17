@@ -1,115 +1,210 @@
-import { ExternalLink, Github, Code2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Github, CheckCircle2, Layers } from "lucide-react";
+
+const categories = ["All", "Web Applications", "AI & Machine Learning"];
 
 const projectsData = [
   {
+    num: "01",
     title: "Online Residential Rental Management",
-    description: "Created a comprehensive web-based Residential Rental Management system that streamlines property listings and bookings. The system reduced management time by 30% and received positive user reviews for its real-time search capabilities and seamless communication features.",
-    technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    highlights: ["30% reduction in management time", "Real-time search", "User-friendly interface"],
+    category: "Web Applications",
+    problem: "Manual property listings and slow booking queries caused delays for tenants and property managers.",
+    solution: "Engineered a centralized web platform enabling real-time property filtering, tenant booking requests, and fast database queries.",
+    techStack: ["PHP", "MySQL", "JavaScript", "HTML5", "CSS3"],
+    outcome: "Achieved a 30% reduction in property management processing time.",
     github: "https://github.com/santhosh050505",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Diabetech - Intelligent Diabetes Monitor",
-    description: "Developed an intelligent diabetes prediction system leveraging machine learning algorithms. Built with Python, Pandas, NumPy, and Streamlit, featuring a Random Forest model with 85% accuracy. The application was validated on 2,000+ health records to support proactive diabetes management.",
-    technologies: ["Python", "Pandas", "NumPy", "Streamlit", "Machine Learning"],
-    highlights: ["85% accuracy", "2,000+ records processed", "Random Forest model"],
+    num: "02",
+    title: "Diabetech — Intelligent Diabetes Monitor",
+    category: "AI & Machine Learning",
+    problem: "Clinical diagnosis requires fast, early classification of diabetes risk from historical health datasets.",
+    solution: "Developed an interactive machine learning classification application leveraging Random Forest algorithms trained on 2,000+ medical records.",
+    techStack: ["Python", "Streamlit", "Pandas", "NumPy", "Scikit-Learn"],
+    outcome: "Delivered 85% prediction accuracy on test validation records.",
     github: "https://github.com/santhosh050505",
+    gradient: "from-emerald-500 to-teal-500",
+  },
+  {
+    num: "03",
+    title: "Developer Portfolio & Client Platform",
+    category: "Web Applications",
+    problem: "Generic templates fail to communicate product engineering standards and technical depth.",
+    solution: "Built a high-performance developer portfolio featuring an editorial design system, dark/light theme adaptivity, and responsive mobile architecture.",
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    outcome: "Engineered for 100/100 Lighthouse performance and zero layout shift.",
+    github: "https://github.com/santhosh050505/SandyPortfolio",
+    gradient: "from-violet-500 to-purple-500",
   },
 ];
 
 const Projects = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? projectsData
+      : projectsData.filter((p) => p.category === activeCategory);
+
   return (
-    <section id="projects" className="py-24 relative overflow-hidden bg-background">
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Image & Title */}
-        <div className="max-w-3xl mx-auto mb-16 text-center animate-fade-up px-2">
-          <div className="relative flex justify-center mb-8">
-            <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center border-2 border-primary/20 overflow-hidden shadow-lg shadow-primary/20">
-               <img 
-                  src="/projects.png" 
-                  alt="Featured Projects" 
-                  className="w-20 h-20 object-contain hover:rotate-12 transition-transform duration-500"
-                />
+    <section id="projects" className="relative py-24 md:py-32 overflow-hidden section-projects transition-colors duration-500">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="absolute inset-0 dot-pattern opacity-20" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.2em] block mb-3">
+            03 / Featured Work
+          </span>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div>
+              <h2 className="text-fluid-3xl font-bold tracking-tight text-foreground mb-4">
+                Selected Software{" "}
+                <span className="gradient-text">Projects</span>
+              </h2>
+              <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)]" />
+            </div>
+
+            {/* Filter Pills */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <motion.button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+                    activeCategory === category
+                      ? "bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)] text-white shadow-lg shadow-primary/20"
+                      : "bg-card text-muted-foreground border border-border hover:border-primary/40 hover:text-foreground"
+                  }`}
+                >
+                  {category}
+                </motion.button>
+              ))}
             </div>
           </div>
-          
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
-            Featured <span className="text-primary">Projects</span>
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
-          <p className="text-foreground/50 mt-6 max-w-2xl mx-auto font-medium uppercase tracking-widest text-xs">
-            Showcasing technical excellence through real-world applications
-          </p>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {projectsData.map((project, index) => (
-            <div
-              key={index}
-              className="bg-card p-6 md:p-10 rounded-3xl shadow-2xl border border-white/5 relative overflow-hidden group hover:border-primary/50 transition-all duration-500"
-            >
-              {/* Decorative Element */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500" />
-              
-              <div className="relative z-10">
-                {/* Icon */}
-                <div className="mb-8">
-                  <div className="inline-flex p-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-colors">
-                    <Code2 className="h-8 w-8 text-primary" />
+        <div className="space-y-6">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, idx) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: 30, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                key={project.title}
+                className="glow-card p-6 sm:p-8 group"
+              >
+                <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                  {/* Left: Case Study */}
+                  <div className="lg:col-span-8 space-y-5">
+                    {/* Number & Category */}
+                    <div className="flex items-center gap-3">
+                      <span className={`text-2xl font-bold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}>
+                        {project.num}
+                      </span>
+                      <span className="text-[10px] font-mono text-muted-foreground uppercase bg-muted/60 px-2.5 py-1 rounded-lg border border-border">
+                        {project.category}
+                      </span>
+                    </div>
+
+                    <h3 className="text-fluid-xl font-bold text-foreground tracking-tight group-hover:gradient-text transition-all duration-500">
+                      {project.title}
+                    </h3>
+
+                    {/* Problem / Solution cards */}
+                    <div className="grid sm:grid-cols-2 gap-3">
+                      <motion.div
+                        whileHover={{ y: -2 }}
+                        className="p-4 bg-muted/30 rounded-xl border border-border/60 space-y-2 hover:border-red-500/20 transition-colors"
+                      >
+                        <span className="text-[10px] font-mono text-red-400 uppercase font-bold flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                          Problem Context
+                        </span>
+                        <p className="text-xs text-foreground/80 leading-relaxed">
+                          {project.problem}
+                        </p>
+                      </motion.div>
+
+                      <motion.div
+                        whileHover={{ y: -2 }}
+                        className="p-4 bg-muted/30 rounded-xl border border-border/60 space-y-2 hover:border-emerald-500/20 transition-colors"
+                      >
+                        <span className="text-[10px] font-mono text-emerald-400 uppercase font-bold flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          Engineering Solution
+                        </span>
+                        <p className="text-xs text-foreground/80 leading-relaxed">
+                          {project.solution}
+                        </p>
+                      </motion.div>
+                    </div>
+
+                    {/* Outcome */}
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                      <span>
+                        <strong className="text-foreground">Impact:</strong>{" "}
+                        {project.outcome}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Right: Stack & Links */}
+                  <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6 lg:border-l lg:border-border/40 lg:pl-6">
+                    <div>
+                      <span className="text-[11px] font-mono text-muted-foreground uppercase font-semibold block mb-3 flex items-center gap-1.5">
+                        <Layers className="h-3 w-3" /> Tech Stack
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.techStack.map((tech, techIdx) => (
+                          <motion.span
+                            key={techIdx}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: techIdx * 0.04 }}
+                            className="px-2.5 py-1 text-[11px] font-semibold bg-primary/5 text-primary border border-primary/20 rounded-lg"
+                          >
+                            {tech}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.02, y: -1 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-card border border-border hover:border-primary/40 text-foreground text-xs font-semibold hover:shadow-lg transition-all duration-300"
+                    >
+                      <Github className="h-4 w-4 text-muted-foreground" />
+                      View Source
+                      <ArrowUpRight className="h-3.5 w-3.5 opacity-60" />
+                    </motion.a>
                   </div>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-black mb-4 text-white uppercase tracking-tighter group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-foreground/70 mb-8 leading-relaxed font-light">
-                  {project.description}
-                </p>
-
-                {/* Highlights */}
-                <div className="mb-8 space-y-3">
-                  {project.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
-                      <span className="text-xs text-foreground/80 font-bold uppercase tracking-widest">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-10">
-                  {project.technologies.map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-4 py-1.5 text-[10px] font-black uppercase tracking-widest bg-primary/10 text-primary rounded-full border border-primary/20"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-4">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-primary/50 text-white hover:bg-primary/10 font-bold px-8 rounded-xl h-14 transition-all duration-300 w-full md:w-auto"
-                    asChild
-                  >
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-3 h-5 w-5" />
-                      Repository
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>

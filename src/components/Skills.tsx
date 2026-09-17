@@ -1,117 +1,116 @@
-import { Code, Database, Globe, Server } from "lucide-react";
+import { motion } from "framer-motion";
+import { Code, Globe, Database, Server } from "lucide-react";
 
-const skillsData = [
+const skillMatrix = [
   {
     category: "Languages",
     icon: Code,
-    skills: [
-      { name: "Java", level: 85 },
-      { name: "Python", level: 80 },
-      { name: "JavaScript", level: 85 },
-      { name: "PHP", level: 75 },
-    ],
+    gradient: "from-violet-500 to-purple-600",
+    skills: ["Java", "JavaScript", "TypeScript", "Python", "PHP"],
   },
   {
-    category: "Web Development",
+    category: "Frontend",
     icon: Globe,
-    skills: [
-      { name: "HTML", level: 90 },
-      { name: "CSS", level: 85 },
-      { name: "React", level: 75 },
-    ],
+    gradient: "from-blue-500 to-cyan-500",
+    skills: ["React", "HTML5", "CSS3", "Tailwind CSS", "Responsive Design", "State Management"],
   },
   {
-    category: "Database",
-    icon: Database,
-    skills: [
-      { name: "MySQL", level: 85 },
-      { name: "Database Design", level: 80 },
-    ],
-  },
-  {
-    category: "Cloud & Tools",
+    category: "Backend & Testing",
     icon: Server,
-    skills: [
-      { name: "Azure", level: 70 },
-      { name: "Git", level: 80 },
-    ],
+    gradient: "from-emerald-500 to-teal-500",
+    skills: ["Node.js", "Express.js", "RESTful APIs", "Software QA Testing", "Defect Tracking", "Agile Sprints"],
+  },
+  {
+    category: "Databases & Tools",
+    icon: Database,
+    gradient: "from-amber-500 to-orange-500",
+    skills: ["MySQL", "Database Design", "SQL Optimization", "Microsoft Azure", "Git & GitHub", "Vite"],
   },
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-background">
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Title */}
-        <div className="text-center mb-16 px-2">
-          <h2 className="text-3xl md:text-5xl font-black mb-4 text-white uppercase tracking-wider break-words">
-            Technical <span className="text-primary">Skills</span>
+    <section id="skills" className="relative py-24 md:py-32 overflow-hidden section-skills transition-colors duration-500">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <span className="text-xs font-mono text-primary uppercase tracking-[0.2em] block mb-3">
+            04 / Technical Matrix
+          </span>
+          <h2 className="text-fluid-3xl font-bold tracking-tight text-foreground mb-4">
+            Technical Stack &{" "}
+            <span className="gradient-text">Competencies</span>
           </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-[0_0_10px_rgba(45,212,191,0.5)]" />
-        </div>
+          <div className="w-16 h-1 rounded-full bg-gradient-to-r from-[var(--gradient-1)] to-[var(--gradient-2)]" />
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 gap-6 order-2 lg:order-1">
-            {skillsData.map((category, index) => (
-              <div key={index} className="bg-card p-6 rounded-2xl border border-white/5 hover:border-primary/30 transition-all duration-300 group">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <category.icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-white uppercase tracking-widest text-xs">{category.category}</h3>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {skillMatrix.map((group, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -4 }}
+              className="glow-card p-5 flex flex-col group"
+            >
+              {/* Category header */}
+              <div className="flex items-center gap-3 pb-4 mb-4 border-b border-border/60">
+                <div
+                  className={`p-2.5 rounded-xl bg-gradient-to-br ${group.gradient} text-white shadow-lg`}
+                >
+                  <group.icon className="h-4 w-4" />
                 </div>
+                <h3 className="text-sm font-bold text-foreground tracking-tight">
+                  {group.category}
+                </h3>
+              </div>
 
-                <div className="space-y-4">
-                  {category.skills.map((skill, idx) => (
-                    <div key={idx}>
-                      <div className="flex justify-between mb-1.5">
-                        <span className="text-[10px] font-bold text-foreground/60 uppercase tracking-tighter">{skill.name}</span>
-                        <span className="text-[10px] font-black text-primary">{skill.level}%</span>
-                      </div>
-                      <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
-                          style={{ width: `${skill.level}%` }}
-                        />
-                      </div>
-                    </div>
+              {/* Skill tags */}
+              <div className="flex flex-wrap gap-1.5 flex-1">
+                {group.skills.map((skill, idx) => (
+                  <motion.span
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + idx * 0.04 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="px-2.5 py-1.5 bg-muted/60 text-foreground border border-border/80 rounded-lg text-[11px] font-medium hover:bg-primary/5 hover:border-primary/30 hover:text-primary transition-all duration-200 cursor-default"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Skill count indicator */}
+              <div className="pt-4 mt-4 border-t border-border/40 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-muted-foreground">
+                  {group.skills.length} skills
+                </span>
+                <div className="flex gap-0.5">
+                  {group.skills.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${group.gradient} opacity-60`}
+                    />
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Illustration & Interests */}
-          <div className="space-y-8 order-1 lg:order-2 flex flex-col items-center">
-            <div className="w-[70%] max-w-[300px] relative">
-              <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl" />
-              <img 
-                src="/skills.png" 
-                alt="Tech Skills Illustration" 
-                className="relative w-full h-auto object-contain hover:scale-110 transition-transform duration-500 drop-shadow-2xl"
-              />
-            </div>
-
-            <div className="bg-card p-8 rounded-3xl border border-white/5 relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-              <h3 className="text-xl font-black mb-6 text-white uppercase tracking-widest text-center">Areas of Interest</h3>
-              <div className="flex flex-wrap justify-center gap-3">
-                {[
-                  "Database Management Systems",
-                  "Web Development",
-                  "App Development",
-                  "Logo Designing",
-                  "Poster making",
-                  "Video Editing"
-                ].map((interest, idx) => (
-                  <span key={idx} className="px-4 py-1.5 bg-primary/5 text-primary border border-primary/10 rounded-lg font-bold text-[10px] uppercase tracking-widest hover:bg-primary/10 transition-colors cursor-default">
-                    {interest}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -119,4 +118,3 @@ const Skills = () => {
 };
 
 export default Skills;
-
